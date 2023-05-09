@@ -1,0 +1,44 @@
+Create table Funcionario(
+
+	codigo int PRIMARY KEY NOT NULL,
+	nome varchar (50) NOT NULL,
+	endereco varchar (50) NOT NULL,
+	telefone varchar (50) NOT NULL,
+	cod_departamento int NOT NULL,
+	CONSTRAINT fk_Departamento FOREIGN KEY (cod_departamento) REFERENCES Departamento (codigo)
+)
+
+CREATE TABLE Dependentes(
+	
+	codigo int PRIMARY KEY NOT NULL,
+	cod_funcionario int NOT NULL,
+	nome varchar (50) NOT NULL,
+	data_nasc date NOT NULL,
+	CONSTRAINT fk_Funcionario FOREIGN KEY (cod_funcionario) REFERENCES Funcionario (codigo)
+
+)
+
+CREATE TABLE Departamento(
+	
+	codigo int PRIMARY KEY NOT NULL,
+	descricao varchar(50) NOT NULL
+	
+)
+
+CREATE TABLE Salarios(
+ 
+	codigo int PRIMARY KEY NOT NULL,
+	id_funcionario int NOT NULL,
+	valor_salario money NOT NULL,
+	data_alteracao date NOT NULL,
+	CONSTRAINT fk_Funcionario FOREIGN KEY (id_funcionario) REFERENCES Funcionario (codigo)
+	
+)
+
+Insert into Salarios (codigo, id_funcionario, valor_salario, data_alteracao)
+	values(1, 2, 1500, '11/5/2020')
+	
+	select f.nome, dp.nome from Funcionario f
+	--INNER JOIN Salarios s on s.id_Funcionario = f.codigo
+	--INNER JOIN Departamento d on d.codigo = f.cod_departamento
+	left join Dependentes dp on dp.cod_funcionario = f.codigo
