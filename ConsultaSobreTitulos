@@ -1,0 +1,79 @@
+select * from category
+
+select * from film
+
+select * from film_category
+
+
+select f.title, ca.name from Film f
+
+INNER JOIN 
+
+right join category ca on ca.category_id = film_id
+
+select f1.title from film f1
+ inner join film_category fc on fc.film_id = f1.film_id
+ inner join category cc on cc.category_id = fc.category_id
+ where fc.category_id = 5;
+ 
+ 
+ select count (*) 
+from film f1
+ inner join film_category fc on fc.film_id = f1.film_id
+ inner join category cc on cc.category_id = fc.category_id
+ where fc.category_id = 1;
+ 
+ 
+ select sum (amount) from payment where customer_id = 23
+ 
+ 
+  select * from customer
+  
+  select * from rental
+  
+  where first_name = 'Sarah'
+  
+  
+  select f.actor_id , ac.first_name || ' ' || ac.last_name, count (*) from film_actor f
+  inner join actor ac on ac.actor_id = f.actor_id
+  group by f.actor_id, ac.first_name || ' ' || ac.last_name
+  
+  
+  select s.staff_id, count (*) as payment_id from staff s
+  inner join payment py on py.staff_id = s.staff_id
+  group by s.staff_id
+  
+  select s.staff_id, sum(amount) from staff s
+  inner join payment py on py.staff_id = s.staff_id
+  group by s.staff_id
+  
+  select s.store_id, count(*) as film_id from inventory i
+  inner join store s on s.store_id = i.store_id
+  group by s.store_id
+  
+  
+  --Apresnete a média do custo de reposição dos filmes
+  
+  select avg (replacement_cost) as replacement_cost from film
+  
+  --Apresente o filme com o maior custo de reposição de filmes
+  
+  select max (replacement_cost) as replacement_cost from film
+  
+  --Apresnte o filme com o menor custo de reposição dos filmes
+  
+  select min (replacement_cost) as replacement_cost from film
+  
+  -- Apresente uma consulta com o nome e sobrenome dos clientes que mais locaram filmes e o valor total gasto nas locações em ordem decrescente
+  
+  select  cus.first_name || ' ' || cus.last_name, sum(s.amount) from customer cus  
+  inner join payment s on s.payment_id = s.payment_id
+  group by cus.first_name, cus.last_name, s.amount
+  order by s.amount desc
+  
+  
+  select * from payment
+  
+  select * from customer
+  
+ 
