@@ -1,0 +1,56 @@
+CREATE TABLE FUNCIONARIO(
+	codigo int PRIMARY KEY NOT NULL,
+	nome varchar (50) NOT NULL,
+	endereco varchar (100) NOT NULL,
+	telefone varchar (20) NOT NULL,
+	cod_departamento int NOT NULL,
+    CONSTRAINT fk_departamento FOREIGN KEY (cod_departamento) REFERENCES Departamento (codigo)
+	
+	)
+	
+CREATE TABLE DEPENDENTES(
+	codigo int PRIMARY KEY NOT NULL,
+	cod_funcionario int NOT NULL,
+	nome varchar (50) NOT NULL,
+	data_nascimento date NOT NULL,
+	CONSTRAINT fk_funcionario FOREIGN KEY (cod_funcionario) REFERENCES Funcionario (codigo)
+	
+	)
+	
+CREATE TABLE DEPARTAMENTO(
+	codigo int PRIMARY KEY NOT NULL,
+	descricao varchar (50) NOT NULL
+	
+	)
+	
+CREATE TABLE SALARIOS(
+	codigo int PRIMARY KEY NOT NULL,
+	id_funcionario int  NOT NULL,
+	valor_salario money NOT NULL,
+	data_alteracao date NOT NULL,
+	CONSTRAINT fk_funcionario FOREIGN KEY (id_funcionario) REFERENCES Funcionario (codigo)
+
+	)
+	
+Insert into Funcionario (codigo, nome, endereco,telefone, cod_departamento)
+	values(1, 'Rafaela', 'Rua São Paulo 423', '45998267821', 1)
+	
+Insert into Funcionario (codigo, nome, endereco,telefone, cod_departamento)
+	values(2, 'Emanuelle', 'Rua São Miguel 231', '45999213211', 2)
+
+Insert into Funcionario (codigo, nome, endereco,telefone, cod_departamento)
+	values(3, 'Larissa', 'Rua Dom Pedro 728', '45992314232', 3)
+	
+Insert into Funcionario (codigo, nome, endereco,telefone, cod_departamento)
+	values(4, 'Leticia', 'Rua Realeza 593', '45998231213', 4)
+	
+Insert into Funcionario (codigo, nome, endereco,telefone, cod_departamento)
+	values(5, 'Ana', 'Rua Matelândia 120', '45999213121', 5)
+	
+
+
+	
+	select*from funcionario
+	
+	
+	
