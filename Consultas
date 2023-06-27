@@ -1,0 +1,35 @@
+SELECT Empréstimo.*
+FROM Empréstimo
+INNER JOIN Exemplar ON Empréstimo.ID_Exemplar = Exemplar.ID_Exemplar
+INNER JOIN Título ON Exemplar.ID_Título = Título.ID_Título
+WHERE Título.Nome_Título = 'Nome do Título';
+
+---------------------------------------------------------------------------
+
+SELECT Empréstimo.*
+FROM Empréstimo
+INNER JOIN Pessoa ON Empréstimo.ID_Pessoa = Pessoa.ID_Pessoa
+WHERE Pessoa.Nome_Pessoa = 'Nome da Pessoa';
+
+---------------------------------------------------------------------------
+
+SELECT Título.Nome_Título, Empréstimo.Data_Devolucao
+FROM Empréstimo
+INNER JOIN Exemplar ON Empréstimo.ID_Exemplar = Exemplar.ID_Exemplar
+INNER JOIN Título ON Exemplar.ID_Título = Título.ID_Título
+INNER JOIN Pessoa ON Empréstimo.ID_Pessoa = Pessoa.ID_Pessoa
+WHERE Pessoa.Nome_Pessoa = 'Nome da Pessoa';
+
+---------------------------------------------------------------------------
+
+SELECT Empréstimo.*
+FROM Empréstimo
+WHERE Empréstimo.Data_Devolucao < CURDATE();
+
+---------------------------------------------------------------------------
+
+SELECT Título.Nome_Título
+FROM Título
+INNER JOIN Exemplar ON Título.ID_Título = Exemplar.ID_Título
+LEFT JOIN Empréstimo ON Exemplar.ID_Exemplar = Empréstimo.ID_Exemplar
+WHERE Empréstimo.ID_Exemplar IS NULL;
