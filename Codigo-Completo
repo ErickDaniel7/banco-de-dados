@@ -1,0 +1,82 @@
+CREATE TABLE Titulo (
+    ID_Titulo INT PRIMARY KEY,
+    Nome_Titulo VARCHAR(255)
+);
+
+CREATE TABLE Editora (
+    ID_Editora INT PRIMARY KEY,
+    Nome_Editora VARCHAR(255)
+);
+
+CREATE TABLE Exemplar (
+    ID_Exemplar INT PRIMARY KEY,
+    ID_Titulo INT,
+    FOREIGN KEY (ID_Titulo) REFERENCES Titulo(ID_Titulo)
+);
+
+CREATE TABLE Pessoa (
+    ID_Pessoa INT PRIMARY KEY,
+    Nome_Pessoa VARCHAR(255)
+);
+
+CREATE TABLE Emprestimo (
+    ID_Empréstimo INT PRIMARY KEY,
+    ID_Exemplar INT,
+    ID_Pessoa INT,
+    Data_Emprestimo DATE,
+    Data_Devolucao DATE,
+    FOREIGN KEY (ID_Exemplar) REFERENCES Exemplar(ID_Exemplar),
+    FOREIGN KEY (ID_Pessoa) REFERENCES Pessoa(ID_Pessoa)
+);
+
+INSERT INTO Titulo (ID_Titulo, Nome_Titulo) VALUES
+    (1, 'Livro A'),
+    (2, 'Livro B'),
+    (3, 'Livro C'),
+    (4, 'Livro D'),
+    (5, 'Livro E'),
+    (6, 'Livro F'),
+    (7, 'Livro G'),
+    (8, 'Livro H'),
+    (9, 'Livro I'),
+    (10, 'Livro J'),
+    (11, 'Livro K'),
+    (12, 'Livro L'),
+    (13, 'Livro M'),
+    (14, 'Livro N'),
+    (15, 'Livro O');
+
+INSERT INTO Pessoa (ID_Pessoa, Nome_Pessoa) VALUES
+    (1, 'Rafaela'),
+    (2, 'Sofia'),
+    (3, 'Pedro'),
+    (4, 'Marcus'),
+    (5, 'Matheus'),
+    (6, 'Maria'),
+    (7, 'Guilherme'),
+    (8, 'Bruno'),
+    (9, 'Milena'),
+    (10, 'Camila');
+
+CREATE TABLE IF NOT EXISTS Log_emprestimo (
+    ID_Empréstimo INT,
+    Data_Saída DATE,
+    Previsão_Devolução DATE
+);
+
+CREATE TRIGGER inserir_log_emprestimo AFTER INSERT ON Emprestimo
+FOR EACH ROW
+BEGIN
+    INSERT INTO Log_emprestimo (ID_Empréstimo, Data_Saída, Previsão_Devolução)
+    VALUES (NEW.ID_Empréstimo, NEW.Data_Emprestimo, NEW.Data_Devolucao);
+END;
+
+CREATE TRIGGER marcar_devolucao AFTER UPDATE ON Emprestimo
+FOR EACH ROW
+BEGIN
+    IF NEW.Data_Devolucao IS NOT NULL THEN
+        UPDATE Log_emprestimo
+        SET Devolvido = 1
+        WHERE ID_Empréstimo = NEW.ID_Empréstimo;
+    END IF;
+END;
