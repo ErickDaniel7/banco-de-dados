@@ -1,0 +1,11 @@
+INSERT INTO Pessoa (ID_Pessoa, Nome_Pessoa) VALUES
+    (1, 'Rafaela'),
+    (2, 'Sofia'),
+    (3, 'Pedro'),
+    (4, 'Marcus'),
+    (5, 'Matheus'),
+    (6, 'Maria'),
+    (7, 'Guilherme'),
+    (8, 'Bruno'),
+    (9, 'Milena'),
+    (10, 'Camila');
