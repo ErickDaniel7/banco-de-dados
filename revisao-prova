@@ -1,0 +1,43 @@
+O comando mais utilizado: 
+SELECT *
+   FROM TABLE_NAME
+
+WHERE
+   CONDITION
+
+(1 questão descritiva para construir uma consulta)
+
+(Saber a diferença entre os join, treinar inner!!)
+INNER JOIN;
+RIGHT JOIN; //traz o que está nulo na tabela da esquerda
+LEFT JOIN; //traz o que está nulo na tabela da direita
+FULL JOIN;
+CROSS JOIN;
+
+//
+(EX)Apresente uma consulta com todos nomes dos dependentes, assim como seus respectivo funcionários, mostrando inclusive os funcionários que não possuem dependentes:
+R=
+
+SELECT dp1.nome Nome_dependente,
+     f1.nome Nome_funcionario
+FROM dependentes dp1
+RIGHT JOIN funcionario f1 On f1.codigo = dp1.cod_funcionario;
+//
+
+Praticar exercicios aula 07
+
+Trigger é um gatilho para disparar um comando/função
+
+Decorar oque é Trigger
+
+Decorar Functions
+
+Oque é diferença do INNER JOIN para o RIGHT JOIN
+
+Oque é uma rotina de backup?
+
+Não vai ser preciso codar uma trigger, apenas análise
+
+Estudar Rotina de backup
+
+Oque é backup?
