@@ -1,0 +1,47 @@
+CREATE TABLE Departamento(
+	id int PRIMARY KEY NOT NULL,
+	nome varchar (50) not null,
+	ativo varchar (10) not null
+)
+
+CREATE TABLE Colaborador(
+	id int PRIMARY KEY NOT NULL,
+	nome varchar (50) not null,
+	cpf varchar (10) not null,
+	data_nascimento date not null,
+	data_admissao date not null,
+	departamento varchar (20) not null,
+	CONSTRAINT fk_departamento FOREIGN KEY (id) references Departamento (id)
+)
+
+CREATE TABLE Epi(
+	id int PRIMARY KEY NOT NULL,
+	descricao varchar (50) not null,
+	data_fabricacao date not null,
+	data_vencimento date not null,
+	CONSTRAINT fk_departamento FOREIGN KEY (id) references Departamento (id)
+
+)
+
+CREATE TABLE ControlarEpi(
+	id int PRIMARY KEY NOT NULL,
+	data_entrega date not null,
+	id_colaborador int not null,
+	id_epi int not null,
+	CONSTRAINT fk_colaborador FOREIGN KEY (id_colaborador) references Colaborador(id),
+	CONSTRAINT fk_epi FOREIGN KEY (id_epi) references Epi(id),
+	CONSTRAINT fk_departamento FOREIGN KEY (id) references Departamento (id)
+
+)
+
+INSERT INTO DEPARTAMENTO (id, nome, ativo)
+	values(2, TI, sim);
+	
+INSERT INTO COLABORADOR (id, nome, cpf, data_nascimento, data_admissao, departamento)
+	values(7, 'Rafaela', 13065617951, '12/06/2004', '03/04/2023', 'logistica');
+	
+INSERT INTO EPI (id, descricao, data_fabricacao, data_nascimento)
+	values(3, 'mascara', '08/04/2023', '01/05/2021');
+	
+INSERT INTO EPI (id, data_entrega, id_colaborador, id_epi)
+	values(5, '10/05/2023', '8', '12');

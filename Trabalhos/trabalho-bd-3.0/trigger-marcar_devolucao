@@ -1,0 +1,9 @@
+CREATE TRIGGER marcar_devolucao AFTER UPDATE ON Empréstimo
+FOR EACH ROW
+BEGIN
+    IF NEW.Data_Devolucao IS NOT NULL THEN
+        UPDATE Log_emprestimo
+        SET Devolvido = 1
+        WHERE ID_Empréstimo = NEW.ID_Empréstimo;
+    END IF;
+END;

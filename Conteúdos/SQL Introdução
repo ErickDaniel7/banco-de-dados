@@ -1,0 +1,96 @@
+-------------------------------------------------------------------------------------------------------------------
+
+SQL é uma linguagem para acesso e manipulação de banco de dados relacionais
+
+Padronizada pela ANSI ( American National Standards Intitute)
+
+Porem, existem diferentes versões da linguagem.
+
+Clausulas
+Operadores logicos e relacionais
+Funções de agregação
+Expressões 
+Predicados
+
+DDL: Criação do esquema do BD
+
+DML: Manipulação de dados
+
+-------------------------------------------------------------------------------------------------------------------
+
+SQL - DDL 
+
+CREATE TABLE Funcionario
+
+(
+       codigo int PRIMARY KEY NOT NULL,
+       nome varchar(50) not null,
+       endereco varchar(150) not null,
+       telefone varchar(20) not null,
+       cod_departamento int,
+CONTRAINT fk_departamento FOREIGN KEY (cod_departamento) references DEPARTAMENTO (codigo)
+);
+
+-------------------------------------------------------------------------------------------------------------------
+
+ALTER TABLE FUNCIONARIO ADD COLUMN idade int;
+
+ALTER TABLE FUNCIONARIO DROP COLUMN idade;
+
+DROP TABLE FUNCIONARIO;
+
+-------------------------------------------------------------------------------------------------------------------
+
+Linguagem para manipulação dos dados
+
+Existem 4 operações principais:
+
+° Insert - Inclusão de dados
+° Update - Alteração dos dados
+° Delete - Exclusão de dados
+° Select - Seleção de dados
+
+-------------------------------------------------------------------------------------------------------------------
+
+SQL - Insert
+
+Possui duas formas de utilizar esse comando;
+
+1. Informando as colunas que deseja colocar  valores: 
+Insert into Cliente (codigo, nome, endereco)value(1,'Nickerson','Rua Teste');
+
+2. Não informamos as colunas e valores para todas as colunas:
+Insert into Cliente values(1,'Nickerson','Rua test', '04/04/1984');
+
+-------------------------------------------------------------------------------------------------------------------
+
+SQL - Update
+
+Update comando utilizado para alterar os dados de uma tabela.
+UPDATE table_name
+
+SET column1=value1,column2=value2,...
+WHERE some_column=some_value;
+ ""quando usar update sempre lembrar de usar o WHERE""
+
+-------------------------------------------------------------------------------------------------------------------
+
+SQL - DELETE
+
+Comando utilizado para deletar tuplas de uma tabela.
+
+D
+
+-------------------------------------------------------------------------------------------------------------------
+
+SQL - Select
+
+Comando utilizado para selecionar tuplas de uam ou mais tabelas.
+
+SELECT coluna1, coluna2, coluna3
+FROM tabela_nome1, tabela_nome2
+WHERE coluna1=valor1
+AND coluna2=valor2
+OR coluna2=valor3;
+
+-------------------------------------------------------------------------------------------------------------------

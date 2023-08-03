@@ -1,0 +1,40 @@
+CREATE TABLE Planos(
+	codigo_plano int PRIMARY KEY NOT NULL,
+	nome VARCHAR (50) NOT NULL,
+	valor_mensal VARCHAR(15) NOT NULL,
+	duracao varchar (50) not NULL,
+	cod_atividade INT,
+	CONSTRAINT fk_Atividade FOREIGN KEY 
+	(cod_atividade) references Atividade(codigo_atividade)
+);
+
+CREATE TABLE Horario(
+	codigo_horario int PRIMARY KEY NOT NULL,
+	hora time NOT NULL,
+	dia_Semana VARCHAR (35) NOT NULL
+	);
+	
+	CREATE TABLE Atividade (
+	codigo_atividade int PRIMARY KEY NOT NULL,
+	nome varchar (25) NOT NULL,
+	cod_horario INT,
+	CONSTRAINT fk_Horario FOREIGN KEY 
+	(cod_horario) references Horario (codigo_horario)
+	);
+
+CREATE TABLE Clientes(
+	codCLL INT PRIMARY KEY NOT NULL,
+	nome VARCHAR (50) NOT NULL,
+	cpf VARCHAR (20) NOT NULL,
+	telefone VARCHAR (20) NOT NULL,
+	cod_plano INT,
+	CONSTRAINT fk_Planos FOREIGN KEY
+	(cod_plano) references Planos (codigo_plano)
+	
+);
+
+select * from Clientes
+select * from Atividade
+select * from Horario
+select * from Planos
+	

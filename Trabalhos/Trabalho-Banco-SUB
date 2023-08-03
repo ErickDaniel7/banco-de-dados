@@ -1,0 +1,30 @@
+CREATE TABLE Titulo (
+    ID_Titulo INT PRIMARY KEY,
+    Nome_Titulo VARCHAR(255)
+);
+
+CREATE TABLE Editora (
+    ID_Editora INT PRIMARY KEY,
+    Nome_Editora VARCHAR(255)
+);
+
+CREATE TABLE Exemplar (
+    ID_Exemplar INT PRIMARY KEY,
+    ID_Titulo INT,
+    FOREIGN KEY (ID_Titulo) REFERENCES Titulo(ID_Titulo)
+);
+
+CREATE TABLE Pessoa (
+    ID_Pessoa INT PRIMARY KEY,
+    Nome_Pessoa VARCHAR(255)
+);
+
+CREATE TABLE Emprestimo (
+    ID_Empréstimo INT PRIMARY KEY,
+    ID_Exemplar INT,
+    ID_Pessoa INT,
+    Data_Emprestimo DATE,
+    Data_Devolucao DATE,
+    FOREIGN KEY (ID_Exemplar) REFERENCES Exemplar(ID_Exemplar),
+    FOREIGN KEY (ID_Pessoa) REFERENCES Pessoa(ID_Pessoa)
+);

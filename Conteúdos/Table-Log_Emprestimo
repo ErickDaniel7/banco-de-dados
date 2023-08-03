@@ -1,0 +1,12 @@
+CREATE TABLE IF NOT EXISTS Log_emprestimo (
+    ID_Empréstimo INT,
+    Data_Saída DATE,
+    Previsão_Devolução DATE
+);
+
+CREATE TRIGGER inserir_log_emprestimo AFTER INSERT ON Empréstimo
+FOR EACH ROW
+BEGIN
+    INSERT INTO Log_emprestimo (ID_Empréstimo, Data_Saída, Previsão_Devolução)
+    VALUES (NEW.ID_Empréstimo, NEW.Data_Emprestimo, NEW.Data_Devolucao);
+END;

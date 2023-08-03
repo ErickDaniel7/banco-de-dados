@@ -1,0 +1,4 @@
+SELECT f1.nome, 
+    s1.valor_salario
+ FROM funcionario F1
+INNER JOIN salarios s1 ON s1.id_funcionario = f1.codigo;
